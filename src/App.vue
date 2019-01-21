@@ -18,7 +18,22 @@
 
 <script>
 import VHeader from 'components/v-header/v-header.vue'
+const ERR_OK = 0
 export default {
+  data () {
+    return {
+      sellers: {}
+    }
+  },
+  created () {
+    this.$http.get('./api/selles').then((response) => {
+      response = response.body
+      if (response.errno === ERR_OK) {
+        this.sellers = response.data
+        console.log(this.sellers)
+      }
+    })
+  },
   components: {
     VHeader
   }
