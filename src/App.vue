@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
     <div class="tab">
       <div class="tab-item">
         <router-link active-class="a" to="/goods">商品</router-link>
@@ -22,7 +22,7 @@ const ERR_OK = 0
 export default {
   data () {
     return {
-      sellers: {}
+      seller: {}
     }
   },
   created () {
