@@ -62,8 +62,8 @@ export default {
 </script>
 
 <style lang="stylus">
-  @import "~common/stylus/mixin.styl"
-  @import "~common/stylus/variable.styl"
+  @import "~common/stylus/mixin"
+  @import "~common/stylus/variable"
 
   .header
     position: relative
