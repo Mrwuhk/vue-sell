@@ -32,12 +32,13 @@ export default {
       width: 100%
       height: 40px
       line-height: 40px
+      border-bottom: 1px solid  rgba(7,17,27,0.1) 
       .tab-item
         flex: 1
         text-align: center
         & > .a
           display: block
-          background-color: red
+          font-size: 14px
+          color: rgba(77,85,93,1)
           text-decoration: none
-
 </style>
