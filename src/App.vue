@@ -2,13 +2,17 @@
   <div id="app">
     <v-header></v-header>
     <div class="tab">
-      <div class="tab-item">商品</div>
-      <div class="tab-item">评论</div>
-      <div class="tab-item">商家</div>
+      <div class="tab-item">
+        <router-link active-class="a" to="/goods">商品</router-link>
+        </div>
+      <div class="tab-item">
+        <router-link active-class="a" to="/ratings">评论</router-link>
+        </div>
+      <div class="tab-item">
+        <router-link active-class="a" to="/sellers">商家</router-link>
+      </div>
     </div>
-    <div class="content">
-      I am content
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -31,5 +35,9 @@ export default {
       .tab-item
         flex: 1
         text-align: center
+        & > .a
+          display: block
+          background-color: red
+          text-decoration: none
 
 </style>
