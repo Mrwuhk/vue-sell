@@ -9,7 +9,7 @@
         <router-link active-class="a" to="/ratings">评论</router-link>
         </div>
       <div class="tab-item">
-        <router-link active-class="a" to="/sellers">商家</router-link>
+        <router-link active-class="a" to="/seller">商家</router-link>
       </div>
     </div>
     <router-view></router-view>
@@ -26,11 +26,11 @@ export default {
     }
   },
   created () {
-    this.$http.get('./api/selles').then((response) => {
+    this.$http.get('./api/seller').then((response) => {
       response = response.body
       if (response.errno === ERR_OK) {
-        this.sellers = response.data
-        console.log(this.sellers)
+        this.seller = response.data
+        console.log(this.seller)
       }
     })
   },
