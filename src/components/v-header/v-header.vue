@@ -28,8 +28,8 @@
     </div>
     <div class="background">
       <!-- <img :src="seller.avatar" width="100%" height="100%"> -->
-       <div v-show="detailShow" class="detail"></div>
     </div>
+     <div v-show="detailShow" class="detail"></div>
   </div>
 </template>
 
