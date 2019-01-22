@@ -199,6 +199,7 @@ export default {
             text-align: center
             font-size: 16px
             font-weight: 700
+            color: white
 
       .detail-close
         position: relative
