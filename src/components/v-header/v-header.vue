@@ -29,7 +29,12 @@
     <div class="background">
       <!-- <img :src="seller.avatar" width="100%" height="100%"> -->
     </div>
-     <div v-show="detailShow" class="detail"></div>
+     <div v-show="detailShow" class="detail">
+       <div class="detail-wrapper clearfix">
+         <div class="detail-main"></div>
+       </div>
+       <div class="detali-close"></div>
+     </div>
   </div>
 </template>
 
