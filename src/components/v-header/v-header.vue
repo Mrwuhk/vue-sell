@@ -31,9 +31,13 @@
     </div>
      <div v-show="detailShow" class="detail">
        <div class="detail-wrapper clearfix">
-         <div class="detail-main"></div>
+         <div class="detail-main">
+           <p class="c">{{seller.bulletin}}</p>
+         </div>
        </div>
-       <div class="detali-close"></div>
+       <div class="detail-close">
+         <i class="icon-close"></i>
+       </div>
      </div>
   </div>
 </template>
@@ -184,4 +188,19 @@ export default {
       height:100%
       overflow: auto
       background: rgba(7,17,27,0.8)
+      .detail-wrapper
+        min-height:100%
+        .detail-main
+          margin-top: 64px
+          padding-bottom: 64px
+          .c
+           background-color: red
+
+      .detail-close
+        position: relative
+        width: 32px
+        height: 32px
+        margin: -64px auto 0 auto
+        clear: both
+        font-size: 32px
 </style>
