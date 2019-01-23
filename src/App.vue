@@ -45,6 +45,9 @@ export default {
 </script>
 
 <style lang="stylus">
+  @import '~common/stylus/index.styl'
+  @import 'normalize.css';
+
   #app
     .tab
       display: flex
