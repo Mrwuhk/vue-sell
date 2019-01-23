@@ -4,8 +4,7 @@
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="menu-item">
           <span class="text border-1px">
-             <span v-show= "item.type>0" class="icon" :class="classMap[item.type]">{{item.name}}
-          </span>
+             <span v-show= "item.type>0" class="icon" :class="classMap[item.type]"></span>
             {{item.name}}
           </span>
         </li>
@@ -48,8 +47,8 @@ export default {
     bottom: 46px
     width: 100%
     overflow: hidden
-    .munu-wrapper
-      flex: 0 0 80px 0
+    .menu-wrapper
+      flex: 0 0 80px
       width: 80px
       background: #f3f5f7
       .menu-item
@@ -65,6 +64,7 @@ export default {
           margin-right: 2px
           background-size: 12px 12px
           background-repeat: no-repeat
+          overflow: hidden
           &.decrease
             bg-image('decrease_3')
           &.discount
@@ -79,7 +79,7 @@ export default {
           font-size: 12px
           display: table-cell
           width: 56px
-          vertical-align: center
+          right: 24px
           border-1px(rgba(7,17,27,0.1))
     .foods-wrapper
       flex: 1
