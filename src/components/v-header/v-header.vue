@@ -41,9 +41,23 @@
              <div class="text">优惠信息</div>
              <div class="line"></div>
            </div>
+           <ul v-if="seller.supports" class="supports">
+             <li class="support-item" v-for="(item,index) in seller.supports " :key="index">
+               <span class="icon" :class="classMap[item.type]"></span>
+               <span class="text" >{{item.description}}></span>
+             </li>
+           </ul>
+           <div class="des">
+             <div class="line1"></div>
+             <div class="text1">商家公告</div>
+             <div class="line1"></div>
+           </div>
+           <div class="bulletin">
+             <p class="content">{{seller.bulletin}}</p>
+           </div>
          </div>
        </div>
-       <div class="detail-close">
+       <div class="detail-close" @click="hideDetail">
          <i class="icon-close"></i>
        </div>
      </div>
@@ -78,7 +92,13 @@ export default {
       // })
       // this.headerDetailComp.show()
       this.detailShow = true
+    },
+    hideDetail () {
+      this.detailShow = false
     }
+  },
+  created () {
+    this.classMap = [ 'decrease', 'discount', 'special', 'invoice', 'gunrantee' ]
   },
   components: {
     SupportIco,
@@ -202,7 +222,7 @@ export default {
         min-height:100%
         width: 100%
         .detail-main
-          margin-top: 64px
+          padding-top: 64px
           padding-bottom: 64px
           .name
             line-height: 16px
@@ -217,7 +237,7 @@ export default {
           .title
             display: flex
             width: 80%
-            margin: 30px auto 24px auto
+            margin: 28px auto 24px auto
             .line
               flex: 1
               position: relative
@@ -226,8 +246,61 @@ export default {
             .text
               padding: 0 12px
               font-size: 14px
+              font-weight: 700
               color: white
-
+          .supports
+            width: 80%
+            margin: 0 auto
+            .support-item
+              padding: 0 12px
+              margin-bottom: 12px
+              font-size: 0
+              &:last-child
+                margin-bottom: 0
+              .icon
+                display: inline-block
+                width: 16px
+                height: 16px
+                vertical-align: top
+                margin-right: 6px
+                background-size: 16px 16px
+                background-repeat: no-repeat
+                &.decrease
+                  bg-image('decrease_2')
+                &.discount
+                  bg-image('discount_2')
+                &.gunrantee
+                  bg-image('guarantee_2')
+                &.invoice
+                  bg-image('invoice_2')
+                &.special
+                  bg-image('special_2')
+              .text
+                line-height: 12px
+                font-size: 12px
+                color: white
+        .des
+            display: flex
+            width: 80%
+            margin: 28px auto 24px auto
+            .line1
+              flex: 1
+              position: relative
+              top: -6px
+              border-bottom: 1px solid rgba(255,255,255,0.2)
+            .text1
+              padding: 0 12px
+              font-size: 14px
+              font-weight: 700
+              color: white
+        .bulletin
+            width: 80%
+            margin: 0 auto
+            .content
+              padding: 0 12px
+              line-height: 24px
+              font-size: 12px
+              color: white
       .detail-close
         position: relative
         width: 32px
@@ -235,4 +308,5 @@ export default {
         margin: -64px auto 0 auto
         clear: both
         font-size: 32px
+        border: 1px solid red
 </style>
