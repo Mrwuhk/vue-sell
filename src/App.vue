@@ -11,6 +11,9 @@
       <div class="tab-item">
         <router-link active-class="a" to="/seller">商家</router-link>
       </div>
+    <goods>
+      <div>ss</div>
+    </goods>
     </div>
     <router-view></router-view>
   </div>
@@ -18,6 +21,7 @@
 
 <script>
 import VHeader from 'components/v-header/v-header.vue'
+import goods from 'components/goods/goods.vue'
 const ERR_OK = 0
 export default {
   data () {
@@ -34,7 +38,8 @@ export default {
     })
   },
   components: {
-    VHeader
+    VHeader,
+    goods
   }
 }
 </script>
