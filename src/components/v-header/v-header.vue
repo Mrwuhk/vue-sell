@@ -93,7 +93,8 @@ export default {
       // this.headerDetailComp.show()
       this.detailShow = true
     },
-    hideDetail () {
+    hideDetail (e) {
+      e.stopPropagation();
       this.detailShow = false
     }
   },
