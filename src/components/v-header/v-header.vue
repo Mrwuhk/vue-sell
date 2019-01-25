@@ -94,7 +94,7 @@ export default {
       this.detailShow = true
     },
     hideDetail (e) {
-      e.stopPropagation();
+      e.stopPropagation()
       this.detailShow = false
     }
   },
@@ -306,8 +306,9 @@ export default {
         position: relative
         width: 32px
         height: 32px
+        line-height: 32px
         margin: -64px auto 0 auto
         clear: both
+        color: rgba(255,255,255,0.8)
         font-size: 32px
-        border: 1px solid red
 </style>
