@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper">
+    <div class="menu-wrapper"  ref="menuWrapper">
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="menu-item">
           <span class="text border-1px">
@@ -10,7 +10,7 @@
         </li>
       </ul>
     </div>
-    <div class="foods-wrapper">
+    <div class="foods-wrapper"  ref="foodsWrapper">
       <ul>
         <li v-for="(item,index) in goods" :key="index" class="food-list">
           <h1 class="title">{{item.name}}</h1>
@@ -27,8 +27,7 @@
                   <span>好评率{{food.rating}}%</span>
                 </div>
                 <div class="price">
-                  <span>¥{{food.price}}</span>
-                  <span v-show="food.oldPrice">¥{{food.oldPrice}}</span>
+                  <span class="now">¥{{food.price}}</span><span v-show="food.oldPrice" class="old">¥{{food.oldPrice}}</span>
                 </div>
               </div>
             </li>
@@ -39,6 +38,8 @@
   </div>
 </template>
 <script>
+import Bscroll from 'better-scroll'
+
 const ERR_OK = 0
 export default {
   props: {
@@ -57,8 +58,17 @@ export default {
       response = response.body
       if (response.errno === ERR_OK) {
         this.goods = response.data
+        this.$nextTick(() => {
+          this._initScroll()
+        })
       }
     })
+  },
+  methods: {
+    _initScroll () {
+      this.menuScroll = new Bscroll(this.$refs.menuWrapper, {})
+      this.foodsScroll = new Bscroll(this.$refs.foodsWrapper, {})
+    }
   }
 }
 </script>
@@ -146,5 +156,16 @@ export default {
           .extra
             &.content
               margin-right: 12px
+          .price
+            font-weight: 700
+            line-height: 24px
+            .now
+              margin-right: 18px
+              font-size: 14px
+              color: red
+            .old
+              text-decoration: line-through
+              font-size: 10px
+              color: rgb(147,153,159)
 
 </style>
