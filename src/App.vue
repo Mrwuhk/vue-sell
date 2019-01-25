@@ -11,9 +11,6 @@
       <div class="tab-item">
         <router-link active-class="a" to="/seller">商家</router-link>
       </div>
-    <goods>
-      <div>ss</div>
-    </goods>
     </div>
     <router-view></router-view>
   </div>
