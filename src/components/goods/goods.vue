@@ -35,10 +35,12 @@
         </li>
       </ul>
     </div>
+    <shopcart></shopcart>
   </div>
 </template>
 <script>
 import Bscroll from 'better-scroll'
+import shopcart from 'components/shopcart/shopcart.vue'
 
 const ERR_OK = 0
 export default {
@@ -59,7 +61,7 @@ export default {
       for (let i = 0; i < this.listHeight.length; i++) {
         let height1 = this.listHeight[i]
         let height2 = this.listHeight[i + 1]
-        if (!height2 || (this.scrollY >= height1 && this.scrollY <= height2)) {
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
           return i
         }
       }
@@ -106,6 +108,9 @@ export default {
         this.listHeight.push(height)
       }
     }
+  },
+  components: {
+    shopcart
   }
 }
 </script>
