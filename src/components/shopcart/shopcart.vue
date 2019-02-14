@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-    <div class="content">
+    <div class="content" @click="toggleList">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight':totalCount>0}">
@@ -15,9 +15,36 @@
         <div class="pay" :class="payClass">{{payDesc}}</div>
       </div>
     </div>
+    <!-- <div class="ball-container">
+      <div v-for="(ball,index) in balls" :key="index" v-show="ball.show" transition="drop" class="ball">
+        <div class="inner"></div>
+      </div>
+    </div> -->
+    <transition name="fold">
+      <div v-show="listShow" :class="['shopcart-list', {'active': listShow}]">
+        <div class="list-hearder">
+          <h1 class="title">购物车</h1>
+          <span class="empty">清空</span>
+        </div>
+        <div class="list-content">
+          <ul>
+            <li class="food" v-for="(food,index) in  selectFoods" :key="index">
+              <span class="name">{{food.name}}</span>
+              <div class="price">
+                <span>¥{{food.price*food.count}}</span>
+              </div>
+              <div class="cartcontrol-wrapper">
+                <cartcontrol :food="food"></cartcontrol>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 <script>
+import cartcontrol from 'components/cartcontrol/cartcontrol.vue'
 export default {
   props: {
     selectFoods: {
@@ -33,6 +60,20 @@ export default {
     minPrice: {
       type: Number,
       default: 0
+    }
+  },
+  data () {
+    return {
+      fold: true
+    }
+  },
+  methods: {
+    toggleList () {
+      if (this.totalCount === 0) {
+        this.fold = true
+        return
+      }
+      this.fold = !this.fold
     }
   },
   computed: {
@@ -66,7 +107,17 @@ export default {
       } else {
         return 'enough'
       }
+    },
+    listShow () {
+      if (this.totalCount === 0) {
+        this.fold = true
+        return false
+      }
+      return !this.fold
     }
+  },
+  components: {
+    cartcontrol
   }
 }
 </script>
@@ -158,4 +209,52 @@ export default {
         &.enough
           background: #00b432
           color: #fff
+  .ball-container
+    .ball
+      position: fixed 
+      left: 32px
+      bottom: 22px
+      z-index: 200
+      &.drop-transition
+        transition: all 0.5s
+        .inner
+          width: 16px
+          height: 16px
+          border-radius: 50%
+          color: rgb(0,160,220)
+          transition: all 0.5s
+  .fold-enter-active, .fold-leave-active
+    transition: all 10s
+  .fold-enter, .fold-leave-to
+    transform: translate3d(0,0,0)
+  .shopcart-list
+    position: absolute
+    top: 0
+    left: 0
+    z-index: 100
+    width: 100%
+    transform: translate3d(0,-100%,0)
+    // &.active
+    //   top: auto
+    //   bottom: 56px
+    //   z-index: 100
+    // &.fold-transition
+    //   transition: all 0.5s
+    //   transform: translate3d(0,-100%,0)
+    // &.fold-enter,&.fold-leave
+    //   transform: translate3d(0,0,0)
+    .list-hearder
+      height: 40px
+      line-height: 40px
+      padding: 0 18px
+      background: #f3f5f7
+      border-bottom: 1px solid rgba(7,17,27,0.1)
+      .title
+        float: left
+        font-size: 14px
+        color: rgb(7,17,27)
+      .empty
+        float: right
+        font-size: 12px
+        color: rgb(0,160,220)
 </style>
